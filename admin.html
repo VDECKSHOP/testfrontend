@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="admin-style.css">
+</head>
+<body>
+
+    <div class="admin-container">
+        <!-- ✅ Sidebar -->
+		
+     <!-- ✅ Admin Sidebar -->
+<aside class="sidebar">
+    <h2>Admin Panel</h2>
+    
+    <!-- 📋 View Orders Button (Added above Logout) -->
+    <button onclick="location.href='view-order.html'" class="view-orders-btn">
+        📋 View Orders
+    </button>
+
+    <!-- 🚪 Logout Button -->
+    <button id="logout-btn">🚪 Logout</button>
+</aside>
+
+
+        <!-- ✅ Main Content -->
+        <main class="admin-content">
+            <h1>Manage Products</h1>
+
+            <!-- ✅ Product Form -->
+            <div class="form-container">
+                <form id="product-form">
+                    <input type="hidden" id="product-id">
+                    
+                    <label>Product Name</label>
+                    <input type="text" id="product-name" required>
+                    
+                    <label>Price</label>
+                    <input type="number" id="product-price" required>
+
+                    <label>Product Description</label>
+                    <textarea id="product-description" required></textarea>
+					
+				<label for="product-stock">Stock Quantity:</label>
+<input type="number" id="product-stock" name="stock" placeholder="Enter stock quantity" required>
+
+	
+
+
+                    <label>Category</label>
+                    <select id="product-category" required>
+                        <option value="playing-cards">Playing Cards</option>
+                        <option value="poker-chips">Poker Chips</option>
+                        <option value="accessories">Accessories</option>
+                    </select>
+
+                    <label>Main Image</label>
+                    <input type="file" id="product-image" accept="image/*" required>
+                    
+                    <label>Additional Images</label>
+                    <div class="image-upload-container">
+                        <input type="file" class="additional-image" accept="image/*">
+                        <input type="file" class="additional-image" accept="image/*">
+                        <input type="file" class="additional-image" accept="image/*">
+                        <input type="file" class="additional-image" accept="image/*">
+
+                    </div>
+
+                    <button type="submit" class="btn-save">Save Product</button>
+                </form>
+            </div>
+
+            <!-- ✅ Product List -->
+            <div class="product-list">
+                <h2>All Products</h2>
+                <ul id="product-list"></ul>
+            </div>
+        </main>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+	
+</html>
+

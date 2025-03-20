@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    const API_BASE_URL = "https://backend-px8c.onrender.com"; // ✅ Declare this ONLY ONCE
+    const API_BASE_URL = "https://backend2-9rho.onrender.com"; // ✅ Declare this ONLY ONCE
 
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get("id");
@@ -150,7 +150,7 @@ async function addToCartFromDetails() {
     if (!productId) return;
 
     try {
-        const API_BASE_URL = "https://backend-px8c.onrender.com";
+        const API_BASE_URL = "https://backend2-9rho.onrender.com";
         const response = await fetch(`${API_BASE_URL}/api/products/${productId}`);
 
         if (!response.ok) {

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product</title>
+    <link rel="stylesheet" href="edit-product.css"> <!-- External CSS for styling -->
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Product</h1>
+        <form id="edit-form">
+            <label for="name">Product Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="price">Price:</label>
+            <input type="number" id="price" required>
+
+            <label for="stock">Stock:</label>
+            <input type="number" id="stock" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" required></textarea>
+
+            <label for="category">Category:</label>
+            <input type="text" id="category" required>
+
+            <!-- ✅ Show Only Main Image Without Change Option -->
+            <label>Product Image:</label>
+            <img id="main-image-preview" src="placeholder.jpg" width="150" alt="Main Image">
+
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+
+    <script src="edit-product.js"></script>
+</body>
+</html>
+

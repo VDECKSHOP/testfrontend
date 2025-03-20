@@ -1,0 +1,130 @@
+/* 🌟 General Page Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* 🌟 Container */
+.container {
+    max-width: 600px;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.container:hover {
+    transform: translateY(-3px);
+}
+
+/* 🌟 Title */
+h1 {
+    color: #343a40;
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+/* 🌟 Form */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* 🌟 Labels */
+label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #495057;
+    text-align: left;
+}
+
+/* 🌟 Input Fields */
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+    background: #f8f9fa;
+}
+
+input:focus, textarea:focus {
+    border-color: #28a745;
+    outline: none;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.3);
+}
+
+/* 🌟 Buttons */
+button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+button:hover {
+    background: #218838;
+    transform: scale(1.05);
+}
+
+/* ❌ Delete Button */
+.delete-btn {
+    background: #dc3545;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+}
+
+/* 🌟 Large, Stylish Product Image */
+.product-image {
+    max-width: 300px;
+    max-height: 300px;
+    display: block;
+    margin: 20px auto;
+    border-radius: 15px;
+    border: 5px solid #f8f9fa;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+}
+
+.product-image:hover {
+    transform: scale(1.05);
+}
+
+/* 🌟 Button Group */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .product-image {
+        max-width: 250px;
+        max-height: 250px;
+    }
+}
+

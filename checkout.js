@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("🛒 Loading cart for checkout...");
+    console.log("🔄 Loading cart for checkout...");
 
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
+    // Get necessary elements
     const cartItemsContainer = document.getElementById("cart-items");
     const cartTotalSpan = document.getElementById("cart-total");
     const cartCountSpan = document.getElementById("cart-count");
@@ -19,10 +20,12 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
+    // Clear cart display
     cartItemsContainer.innerHTML = "";
     let total = 0;
     let orderSummaryText = "";
 
+    // Display cart items
     cart.forEach((item) => {
         const li = document.createElement("li");
         li.textContent = `${item.quantity}x ${item.name} - ₱${(item.price * item.quantity).toFixed(2)}`;
@@ -31,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
         orderSummaryText += `${item.quantity}x ${item.name} - ₱${(item.price * item.quantity).toFixed(2)}\n`;
     });
 
+    // Update totals
     cartTotalSpan.textContent = total.toFixed(2);
     cartCountSpan.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
     selectedProductTextArea.value = orderSummaryText.trim();
@@ -52,12 +56,13 @@ document.getElementById("order-form")?.addEventListener("submit", async function
     const phone = document.getElementById("phone")?.value.trim();
     const email = document.getElementById("email")?.value.trim();
     const orderTotal = document.getElementById("order-total")?.value;
-    const paymentMethod = document.querySelector('input[name="payment"]:checked')?.value;
-    
+    const paymentMethod = document.getElementById("payment-method")?.value;
+    const paymentProofFile = document.getElementById("payment-proof")?.files[0];
+
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    if (!firstname || !lastname || !address || !city || !state || !postcode || !phone || !email || cart.length === 0 || !orderTotal || !paymentMethod) {
-        alert("❌ Please complete all required fields.");
+    if (!firstname || !lastname || !address || !city || !state || !postcode || !phone || !email || cart.length === 0 || !orderTotal || !paymentMethod || !paymentProofFile) {
+        alert("❌ Please complete all required fields and upload proof of payment.");
         return;
     }
 
@@ -67,26 +72,25 @@ document.getElementById("order-form")?.addEventListener("submit", async function
     submitButton.disabled = true;
     submitButton.textContent = "Processing...";
 
-    const orderDetails = {
-        firstname,
-        lastname,
-        address,
-        city,
-        state,
-        postcode,
-        phone,
-        email,
-        items: cart,
-        total: parseFloat(orderTotal).toFixed(2),
-        paymentMethod,
-    };
+    const formData = new FormData();
+    formData.append("firstname", firstname);
+    formData.append("lastname", lastname);
+    formData.append("address", address);
+    formData.append("city", city);
+    formData.append("state", state);
+    formData.append("postcode", postcode);
+    formData.append("phone", phone);
+    formData.append("email", email);
+    formData.append("total", parseFloat(orderTotal).toFixed(2));
+    formData.append("paymentMethod", paymentMethod);
+    formData.append("paymentProof", paymentProofFile); // Attach file
+    formData.append("items", JSON.stringify(cart));
 
     try {
-        const API_BASE_URL = "https://backend-px8c.onrender.com";
+        const API_BASE_URL = "https://backend2-9rho.onrender.com";
         const response = await fetch(`${API_BASE_URL}/api/orders`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(orderDetails),
+            body: formData, // Send as multipart/form-data
         });
 
         const responseData = await response.json();
@@ -110,7 +114,7 @@ document.getElementById("order-form")?.addEventListener("submit", async function
 // Update Stock after Order
 async function updateStock(cart) {
     try {
-        const API_BASE_URL = "https://backend-px8c.onrender.com";
+        const API_BASE_URL = "https://backend2-9rho.onrender.com";
         for (const item of cart) {
             const response = await fetch(`${API_BASE_URL}/api/products/${item.id}/update-stock`, {
                 method: "PATCH",
@@ -119,7 +123,7 @@ async function updateStock(cart) {
             });
 
             const responseData = await response.json();
-            console.log("📦 Server Response:", responseData);
+            console.log("📦 Stock Update Response:", responseData);
 
             if (!response.ok) {
                 throw new Error(responseData.error || "❌ Failed to update stock.");
@@ -143,11 +147,16 @@ document.addEventListener("DOMContentLoaded", () => {
         cartDropdown.style.display = cartDropdown.style.display === "block" ? "none" : "block";
     });
 
-    document.addEventListener("click", (event) => {
+   document.addEventListener("click", (event) => {
+    const cartIcon = document.getElementById("cart-icon");
+    const cartDropdown = document.getElementById("cart-dropdown");
+
+    if (cartIcon && cartDropdown) {
         if (!cartIcon.contains(event.target) && !cartDropdown.contains(event.target)) {
             cartDropdown.style.display = "none";
         }
-    });
+    }
+});
 });
 
 // Render Cart UI

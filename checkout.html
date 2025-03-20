@@ -154,10 +154,17 @@
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label for="order-notes">Order notes (optional)</label>
-                    <textarea id="order-notes" name="orderNotes" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
-                </div>
+               <div class="form-group">
+    <label for="order-notes">Order notes (optional)</label>
+    <textarea id="order-notes" name="orderNotes" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+</div>
+
+<!-- Proof of Payment Upload -->
+<div class="form-group">
+    <label for="payment-proof">Upload Proof of Payment *</label>
+    <input type="file" id="payment-proof" name="paymentProof" accept="image/*" required>
+</div>
+
 
                 <button id="submit-order" type="submit">Place Order</button>
             </form>
@@ -165,6 +172,7 @@
 
              <!-- Your Order Section -->
         <div class="order-summary">
+			
             <h2>Your Order</h2>
             
             <!-- Cart Items List -->
@@ -173,6 +181,7 @@
             <!-- Cart Total -->
             <p><strong>Subtotal: ₱<span id="cart-total">0</span></strong></p>    
             <p><strong>Total: ₱<span id="order-total">0</span></strong></p>
+			<p><strong>Items in Cart: <span id="cart-count">0</span></strong></p>
 
             <!-- Selected Products (Hidden Textarea for Backend Use) -->
             <textarea id="selected-product" name="items" hidden></textarea>

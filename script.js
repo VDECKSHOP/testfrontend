@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function loadProducts() {
     try {
-        const API_BASE_URL = "https://backend-px8c.onrender.com";
+        const API_BASE_URL = "https://backend2-9rho.onrender.com";
         const response = await fetch(`${API_BASE_URL}/api/products`);
 
         if (!response.ok) throw new Error("❌ Failed to fetch products.");
@@ -102,7 +102,7 @@ function renderCart() {
 
 async function updateStock(cart) {
     try {
-        const API_BASE_URL = "https://backend-px8c.onrender.com";
+        const API_BASE_URL = "https://backend2-9rho.onrender.com";
         for (const item of cart) {
             const response = await fetch(`${API_BASE_URL}/api/products/${item.id}/update-stock`, {
                 method: "PATCH",
@@ -163,7 +163,7 @@ document.getElementById("order-form")?.addEventListener("submit", async function
     formData.append("paymentProof", paymentProof);
 
     try {
-        const API_BASE_URL = "https://backend-px8c.onrender.com";
+        const API_BASE_URL = "https://backend2-9rho.onrender.com";
         const response = await fetch(`${API_BASE_URL}/api/orders`, {
             method: "POST",
             body: formData,
