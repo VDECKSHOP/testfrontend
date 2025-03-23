@@ -7,23 +7,34 @@
 }
 
 /* ========== HEADER ========== */
+/* ========== HEADER STYLING ========== */
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
     background: #222;
     color: white;
-    position: fixed;
+    padding: 15px 20px;
     width: 100%;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
 }
 
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 18900px;
+    margin: 0 auto;
+}
+
 .logo {
-    font-size: 22px;
-    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 10px;
 }
 
 nav ul {
@@ -48,6 +59,21 @@ nav ul li a:hover, nav ul li a.active {
     color: black;
     border-radius: 5px;
 }
+
+/* 🔒 Hidden Admin Login */
+.admin-login {
+    text-decoration: none;
+    font-size: 14px;
+    color: gray;
+    margin-left: 10px;
+    cursor: pointer;
+    display: none; /* Hidden until revealed */
+}
+
+.admin-login:hover {
+    color: red;
+}
+
 
 /* ========== ABOUT US SECTION ========== */
 .about-section {

@@ -10,17 +10,26 @@
 
     <!-- ========== HEADER ========== -->
     <header>
+    <div class="header-container">
+        <!-- Logo Section -->
         <div class="logo">
             <img src="logo 1.PNG" alt="Company Logo">
             <span>VDECKS</span>
+
+            <!-- 🔒 Hidden Admin Login -->
+            <a href="admin-login.html" class="admin-login" id="admin-login">Admin</a>
         </div>
+
+        <!-- Navigation -->
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html" class="active">About Us</a></li>
             </ul>
         </nav>
-    </header>
+    </div>
+</header>
+
 
     <!-- ========== ABOUT US SECTION ========== -->
     <section class="about-section">
@@ -72,10 +81,27 @@
         </div>
     </section>
 
-    <!-- ========== FOOTER ========== -->
+   <!-- ========== FOOTER ========== -->
     <footer>
         <p>&copy; 2024 VDECKS. All rights reserved.</p>
     </footer>
+
+ <script>
+    document.getElementById("admin-login").style.display = "none";
+
+    let typedKeys = "";
+    document.addEventListener("keydown", function(event) {
+        typedKeys += event.key;
+        if (typedKeys.length > 10) {
+            typedKeys = typedKeys.slice(-10);
+        }
+
+        if (typedKeys.includes("admin1019")) {
+            document.getElementById("admin-login").style.display = "inline";
+        }
+    });
+</script>
+
 
 </body>
 </html>
