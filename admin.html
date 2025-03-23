@@ -10,20 +10,17 @@
 
     <div class="admin-container">
         <!-- ✅ Sidebar -->
-		
-     <!-- ✅ Admin Sidebar -->
-<aside class="sidebar">
-    <h2>Admin Panel</h2>
-    
-    <!-- 📋 View Orders Button (Added above Logout) -->
-    <button onclick="location.href='view-order.html'" class="view-orders-btn">
-        📋 View Orders
-    </button>
+        <aside class="sidebar">
+            <h2>Admin Panel</h2>
+            
+            <!-- 📋 View Orders Button -->
+            <button onclick="location.href='view-order.html'" class="view-orders-btn">
+                📋 View Orders
+            </button>
 
-    <!-- 🚪 Logout Button -->
-    <button id="logout-btn">🚪 Logout</button>
-</aside>
-
+            <!-- 🚪 Logout Button -->
+            <button id="logout-btn">🚪 Logout</button>
+        </aside>
 
         <!-- ✅ Main Content -->
         <main class="admin-content">
@@ -42,12 +39,9 @@
 
                     <label>Product Description</label>
                     <textarea id="product-description" required></textarea>
-					
-				<label for="product-stock">Stock Quantity:</label>
-<input type="number" id="product-stock" name="stock" placeholder="Enter stock quantity" required>
-
-	
-
+                    
+                    <label for="product-stock">Stock Quantity:</label>
+                    <input type="number" id="product-stock" name="stock" placeholder="Enter stock quantity" required>
 
                     <label>Category</label>
                     <select id="product-category" required>
@@ -65,8 +59,18 @@
                         <input type="file" class="additional-image" accept="image/*">
                         <input type="file" class="additional-image" accept="image/*">
                         <input type="file" class="additional-image" accept="image/*">
-
                     </div>
+                    
+<div class="checkbox-container">
+    <input type="checkbox" id="best-seller" name="best-seller">
+    <label for="best-seller">Mark as Best Seller</label>
+</div>
+
+<div class="checkbox-container">
+    <input type="checkbox" id="new-arrival" name="new-arrival">
+    <label for="new-arrival">Mark as New Arrival</label>
+</div>
+
 
                     <button type="submit" class="btn-save">Save Product</button>
                 </form>
@@ -82,6 +86,6 @@
 
     <script src="admin.js"></script>
 </body>
-	
 </html>
+
 

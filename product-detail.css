@@ -70,7 +70,7 @@ body {
 
 .product-info .price {
     font-size: 28px;
-    color: #001f60;
+    color: #0A0A0A;
     font-weight: bold;
     margin-bottom: 20px;
 }
@@ -103,7 +103,7 @@ body {
 }
 
 .quantity-controls button {
-    background-color: #001f60;
+    background-color: #0A0A0A;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -117,7 +117,7 @@ body {
 
 /* ✅ Add to Cart Button */
 .add-to-cart-btn {
-    background-color: #001f60;
+    background-color: #0A0A0A;
     color: white;
     padding: 15px 30px;
     border: none;

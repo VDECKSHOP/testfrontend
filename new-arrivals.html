@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Arrivals - VDECKS</title>
+    <link rel="stylesheet" href="new-arrivals.css">
+</head>
+<body>
+
+<!-- Navigation -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="logo 1.PNG" alt="VDECKS Logo">
+            <span>VDECKS</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">New Arrivals</a></li> 
+                <li class="nav-item">
+                    <a href="bestsellers.html" class="nav-link best-sellers-link active">Best Sellers</a>
+                </li>
+                
+                <li><a href="about.html">About Us</a></li>
+
+            </ul>
+        </nav>
+
+         <li class="nav-item cart-dropdown">
+            <a href="#" id="cart-icon">
+                <div class="cart-icon-container">
+                    <img src="—Pngtree—vector add to cart vector_4142729.png" alt="Cart" class="cart-icon">
+                    <span id="cart-count" class="cart-counter">0</span>
+                </div>
+            </a>
+            <div id="cart-dropdown" class="cart-dropdown-content">
+                <h2>🛒 Your Cart</h2>
+                <ul id="cart-items"></ul>
+                <p><strong>Total: ₱<span id="cart-total">0</span></strong></p>
+                <button id="checkout-button">Checkout</button>
+            </div>
+        </li>
+    </header>
+
+    <!-- ✅ New Arrivals Section -->
+    <section id="products">
+        <h2>New Arrivals</h2>
+        <div class="category-container">
+            <div class="slider-container">
+                <div class="slider-wrapper" id="new-arrivals-container">
+                    <!-- New Arrivals will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="new-arrivals.js"></script>
+
+</body>
+</html>

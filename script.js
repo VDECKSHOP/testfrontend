@@ -186,19 +186,18 @@ document.getElementById("order-form")?.addEventListener("submit", async function
         submitButton.textContent = "Place Order";
     }
 });
+
 document.addEventListener("DOMContentLoaded", () => {
     renderCart();
-    
+
     const cartIcon = document.getElementById("cart-icon");
     const cartDropdown = document.getElementById("cart-dropdown");
 
-    // Toggle cart visibility
     cartIcon.addEventListener("click", (event) => {
         event.preventDefault();
         cartDropdown.style.display = cartDropdown.style.display === "block" ? "none" : "block";
     });
 
-    // Close dropdown when clicking outside
     document.addEventListener("click", (event) => {
         if (!cartIcon.contains(event.target) && !cartDropdown.contains(event.target)) {
             cartDropdown.style.display = "none";
@@ -206,41 +205,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-function renderCart() {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const cartItemsContainer = document.getElementById("cart-items");
-    const cartTotalSpan = document.getElementById("cart-total");
-    const cartCountSpan = document.getElementById("cart-count");
-
-    cartItemsContainer.innerHTML = "";
-    let total = 0;
-
-    cart.forEach((item, index) => {
-        const li = document.createElement("li");
-        li.innerHTML = `
-            ${item.name} - ₱${item.price.toFixed(2)} x ${item.quantity}
-            <button onclick="removeFromCart(${index})">❌</button>
-        `;
-        cartItemsContainer.appendChild(li);
-        total += item.price * item.quantity;
-    });
-
-    cartTotalSpan.textContent = total.toFixed(2);
-    cartCountSpan.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
-}
-
-function removeFromCart(index) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    if (index >= 0 && index < cart.length) {
-        cart.splice(index, 1);
-        localStorage.setItem("cart", JSON.stringify(cart));
-        renderCart();
-    }
-}
-
-function checkout() {
-    alert("Proceeding to checkout...");
-}
 document.getElementById("checkout-button")?.addEventListener("click", function () {
     window.location.href = "checkout.html"; // ✅ Redirect to checkout page
 });

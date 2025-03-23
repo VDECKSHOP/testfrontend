@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const API_BASE_URL = "https://backend2-9rho.onrender.com";
 
-    // ✅ Fetch products from the API and display them
+    // ✅ Fetch products and display them
     async function fetchProducts() {
         try {
             const response = await fetch(`${API_BASE_URL}/api/products`);
@@ -37,6 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     <strong>${product.name}</strong> - ₱${product.price} (${product.category})
                     <p>${product.description || 'No description available'}</p>
                     <p><strong>Stock:</strong> ${product.stock > 0 ? product.stock : "❌ Out of Stock"}</p>
+                    <p><strong>Best Seller:</strong> ${product.bestSeller ? "✅ Yes" : "❌ No"}</p>
+                    <p><strong>New Arrival:</strong> ${product.newArrival ? "✅ Yes" : "❌ No"}</p>
                 </div>
             `;
 
@@ -61,9 +63,9 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = `edit-product.html?id=${productId}`;
     }
 
-    // ✅ Delete Product (Calls API with DELETE method)
+    // ✅ Delete Product
     window.deleteProduct = async (id) => {
-        console.log("🛠 Deleting Product ID:", id);
+        console.log("⚙️ Deleting Product ID:", id);
 
         if (!confirm("Are you sure you want to delete this product?")) return;
 
@@ -86,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // ✅ Handle Product Submission
+    // ✅ Handle Product Submission (Includes Best Seller & New Arrival)
     productForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
@@ -95,6 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const description = document.getElementById("product-description")?.value.trim();
         const category = document.getElementById("product-category")?.value;
         const stockInput = document.getElementById("product-stock");
+        const bestSellerCheckbox = document.getElementById("best-seller");
+        const newArrivalCheckbox = document.getElementById("new-arrival"); // ✅ New Arrival Checkbox
 
         if (!stockInput) {
             console.error("❌ Stock input field not found!");
@@ -103,6 +107,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const stock = parseInt(stockInput.value.trim(), 10);
+
+        // ✅ Ensure checkboxes exist before accessing .checked
+        const bestSeller = bestSellerCheckbox ? bestSellerCheckbox.checked : false;
+        const newArrival = newArrivalCheckbox ? newArrivalCheckbox.checked : false; // ✅ New Arrival
 
         const mainImageFile = document.getElementById("product-image")?.files[0];
         const additionalImages = document.querySelectorAll(".additional-image");
@@ -123,6 +131,8 @@ document.addEventListener("DOMContentLoaded", () => {
         formData.append("description", description);
         formData.append("category", category);
         formData.append("stock", stock);
+        formData.append("bestSeller", bestSeller);
+        formData.append("newArrival", newArrival); // ✅ New Arrival Included
         formData.append("images", mainImageFile);
 
         // ✅ Append Additional Images (If Available)
@@ -150,47 +160,5 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // ✅ Ensure Stock is Not Overwritten When Editing a Product
-    async function updateProduct(productId) {
-        try {
-            const response = await fetch(`${API_BASE_URL}/api/products/${productId}`);
-            if (!response.ok) throw new Error("❌ Failed to fetch product data.");
-
-            const productData = await response.json();
-
-            const name = document.getElementById("product-name").value.trim();
-            const price = parseFloat(document.getElementById("product-price").value.trim());
-            const description = document.getElementById("product-description").value.trim();
-            const category = document.getElementById("product-category").value;
-            const stockInput = document.getElementById("product-stock");
-
-            let stock = productData.stock;
-            if (stockInput) {
-                const newStockValue = parseInt(stockInput.value.trim(), 10);
-                if (!isNaN(newStockValue)) {
-                    stock = newStockValue;
-                }
-            }
-
-            const updatedProduct = { name, price, description, category, stock };
-
-            const updateResponse = await fetch(`${API_BASE_URL}/api/products/${productId}`, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(updatedProduct)
-            });
-
-            const updateResult = await updateResponse.json();
-            if (!updateResponse.ok) throw new Error(updateResult.error || "❌ Failed to update product.");
-
-            alert("✅ Product updated successfully!");
-            fetchProducts();
-        } catch (error) {
-            console.error("❌ Error updating product:", error);
-            alert("❌ Failed to update product.");
-        }
-    }
-
     fetchProducts();
 });
-
